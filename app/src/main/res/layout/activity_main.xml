@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/led_on"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="72dp"
+        android:onClick="on_led"
+        android:text="ON LED"
+        app:layout_constraintBottom_toTopOf="@+id/led_off"
+        app:layout_constraintEnd_toEndOf="@+id/led_off" />
+
+    <Button
+        android:id="@+id/led_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
+        android:onClick="off_led"
+        android:text="OFF LED"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/i2cText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="37dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/geti2c"
+        app:layout_constraintEnd_toEndOf="@+id/geti2c" />
+
+    <Button
+        android:id="@+id/geti2c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="18dp"
+        android:onClick="get_i2c"
+        android:text="GET i2c"
+        app:layout_constraintBottom_toTopOf="@+id/led_on"
+        app:layout_constraintEnd_toEndOf="@+id/led_on" />
+</androidx.constraintlayout.widget.ConstraintLayout>
