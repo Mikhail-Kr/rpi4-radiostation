@@ -1,4 +1,4 @@
-package com.example.rpi4;
+package com.example.rpi4Radiostation.models;
 
 import java.io.BufferedReader;
 import java.io.IOException;

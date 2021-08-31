@@ -1,4 +1,4 @@
-package com.example.rpi4;
+package com.example.rpi4Radiostation;
 
 import org.junit.Test;
 

@@ -28,24 +28,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/i2cText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="37dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/geti2c"
-        app:layout_constraintEnd_toEndOf="@+id/geti2c" />
-
     <Button
-        android:id="@+id/geti2c"
+        android:id="@+id/get_ports"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="18dp"
-        android:onClick="get_i2c"
-        android:text="GET i2c"
-        app:layout_constraintBottom_toTopOf="@+id/led_on"
-        app:layout_constraintEnd_toEndOf="@+id/led_on" />
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="39dp"
+        android:onClick="getSerialPorts"
+        android:text="GetPorts"
+        app:layout_constraintStart_toStartOf="@+id/led_off"
+        app:layout_constraintTop_toBottomOf="@+id/led_off" />
+
+    <TextView
+        android:id="@+id/devices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="29dp"
+        android:text="Devices"
+        app:layout_constraintStart_toStartOf="@+id/get_ports"
+        app:layout_constraintTop_toBottomOf="@+id/get_ports" />
+
+    <TextView
+        android:id="@+id/allDevices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="66dp"
+        android:text="AllDevices"
+        app:layout_constraintStart_toStartOf="@+id/devices"
+        app:layout_constraintTop_toBottomOf="@+id/devices" />
 </androidx.constraintlayout.widget.ConstraintLayout>
