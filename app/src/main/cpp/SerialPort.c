@@ -95,7 +95,7 @@ JNIEXPORT jobject JNICALL Java_com_example_rpi4Radiostation_models_serialPort_Se
 		jboolean iscopy;
 		const char *path_utf = (*env)->GetStringUTFChars(env, path, &iscopy);
 		LOGD("Opening serial port %s with flags 0x%x", path_utf, O_RDWR | flags);
-		fd = open(path_utf, O_RDWR | flags);
+ 		fd = open(/*path_utf*/"/dev/ttyS0", O_RDWR | flags);
 		LOGD("open() fd = %d", fd);
 		(*env)->ReleaseStringUTFChars(env, path, path_utf);
 		if (fd == -1)
@@ -136,7 +136,7 @@ JNIEXPORT jobject JNICALL Java_com_example_rpi4Radiostation_models_serialPort_Se
 	{
 		jclass cFileDescriptor = (*env)->FindClass(env, "java/io/FileDescriptor");
 		jmethodID iFileDescriptor = (*env)->GetMethodID(env, cFileDescriptor, "<init>", "()V");
-		jfieldID descriptorID = (*env)->GetFieldID(env, cFileDescriptor, "fd", "I");
+		jfieldID descriptorID = (*env)->GetFieldID(env, cFileDescriptor, "descriptor", "I");
 		mFileDescriptor = (*env)->NewObject(env, cFileDescriptor, iFileDescriptor);
 		(*env)->SetIntField(env, mFileDescriptor, descriptorID, (jint)fd);
 	}
@@ -156,7 +156,7 @@ JNIEXPORT void JNICALL Java_com_example_rpi4Radiostation_models_serialPort_Seria
 	jclass FileDescriptorClass = (*env)->FindClass(env, "java/io/FileDescriptor");
 
 	jfieldID mFdID = (*env)->GetFieldID(env, SerialPortClass, "mFd", "Ljava/io/FileDescriptor;");
-	jfieldID descriptorID = (*env)->GetFieldID(env, FileDescriptorClass, "fd", "I");
+	jfieldID descriptorID = (*env)->GetFieldID(env, FileDescriptorClass, "descriptor", "I");
 
 	jobject mFd = (*env)->GetObjectField(env, thiz, mFdID);
 	jint descriptor = (*env)->GetIntField(env, mFd, descriptorID);

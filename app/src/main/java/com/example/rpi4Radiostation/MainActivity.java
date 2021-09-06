@@ -3,17 +3,23 @@ package com.example.rpi4Radiostation;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rpi4Radiostation.databinding.ActivityMainBinding;
 import com.example.rpi4Radiostation.models.GPIO;
+import com.example.rpi4Radiostation.models.serialPort.SerialPort;
 import com.example.rpi4Radiostation.models.serialPort.SerialPortFinder;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     GPIO gpio;
     private SerialPortFinder mSerialPortFinder;
+    String[] entryValues;
 
     // Used to load the 'SerialPort' library on application startup.
     static {
@@ -48,9 +54,18 @@ public class MainActivity extends AppCompatActivity {
         TextView allDevices = findViewById(R.id.allDevices);
 
         String[] entries = mSerialPortFinder.getAllDevices();
-        String[] entryValues = mSerialPortFinder.getAllDevicesPath();
+        entryValues = mSerialPortFinder.getAllDevicesPath();
 
         devices.setText(entries[1]);
         allDevices.setText(entryValues[1]);
+
+
+        try {
+            SerialPort serialPort = new SerialPort(new File(entries[1]), 115200, 0);
+            Toast toast = Toast.makeText(getApplicationContext(), "das", Toast.LENGTH_SHORT);
+            toast.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
