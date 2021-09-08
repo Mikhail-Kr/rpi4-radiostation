@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     GPIO gpio;
     private SerialPortFinder mSerialPortFinder;
     String[] entryValues;
+    SerialPort serialPort;
 
     // Used to load the 'SerialPort' library on application startup.
     static {
@@ -61,11 +62,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         try {
-            SerialPort serialPort = new SerialPort(new File(entries[1]), 115200, 0);
+            serialPort = new SerialPort(new File(entryValues[1]), 115200, 0);
             Toast toast = Toast.makeText(getApplicationContext(), "das", Toast.LENGTH_SHORT);
             toast.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        serialPort.close();
     }
 }
